@@ -25,3 +25,19 @@ def minOperations(n):
             operations += 1
 
     return operations
+
+
+if __name__ == '__main__':
+    from random import randint
+    from time import time
+
+    start_time = time()
+
+    for _ in range(10):
+        n = randint(2, 100)
+        print("Min # of operations to reach {} char (original): {}".
+              format(n, minOperations(n)))
+        print("Min # of operations to reach {} char (modified): {}".
+              format(n, minOperationsModified(n)))
+
+    print(f'==> Program completed in {time() - start_time:.3f}s')
