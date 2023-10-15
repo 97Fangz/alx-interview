@@ -2,23 +2,32 @@
 
 """ Minimum Operations """
 
-
 def minOperations(n):
-    """
-    In a text file,there is a single character H.
-    Your text editor can execute only two operations
-    in this file: Copy All and Paste. Given a number n,
-    write a method that calculates the fewest number of
-    operations needed to result in exactly n H characters in the file.
-    """
-    return 0
+    '''
+    returns the minimum operations to get n H's
+    '''
+    min_operations = 0
 
-    op = 0
-    i = 2
-    while (i <= n):
-        if not (n % i):
-            n = int(n / i)
-            op += i
-            i = 1
-        i += 1
-    return op
+    if n <= 1:
+        return min_operations
+
+    for i in range(2, n + 1):
+        while n % i == 0:
+            min_operations += i
+            n /= i
+
+    return min_operations
+
+
+if __name__ == '__main__':
+    from random import randint
+    from time import time
+
+    start_time = time()
+
+    for i in range(10):
+        n = randint(2, 100)
+        print("Min # of operations to reach {} char: {}".
+              format(n, minOperations(n)))
+
+    print(f'==> Program completed in {time() - start_time:.3f}s')
